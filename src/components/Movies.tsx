@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import { BiChevronDown } from "react-icons/bi";
@@ -15,24 +15,56 @@ interface MoviesProps {
   movies: Movie[];
 }
 export default function Movies({ movies }: MoviesProps) {
+  const tabs = [{ name: "Movies" }, { name: "Series" }, { name: "Actions" }];
+
+  const [activeTab, setActiveTab] = useState("Movies");
+  const isActive = (tabname: string) =>
+    tabs.some((tab) => tab.name === tabname);
+
   return (
     <div className="sm:px-16 px-8 py-8 ">
       <div className="border-b-2 border-gray-500 py-4 text-gray-500">
         <ul className="flex movies-center justify-between">
-          <li className="text-2xl font-semibold text-white flex items-center ">
-            <MdMovieFilter className="text-3xl" />
-            <p className="px-2 ml-2">Movies</p>
-          </li>
-          <BarIcon
-            icon={
-              <BsFillCollectionPlayFill className="text-2xl font-bold pl-2" />
-            }
-            title="Series"
-          />
-          <BarIcon
-            icon={<MdLocalMovies className="text-2xl font-bold pl-2" />}
-            title="Actions"
-          />
+          {[
+            {
+              name: "Movies",
+              icon: (
+                <BsFillCollectionPlayFill className="text-2xl font-bold pl-2" />
+              ),
+            },
+            {
+              name: "Series",
+              icon: (
+                <BsFillCollectionPlayFill className="text-2xl font-bold pl-2" />
+              ),
+            },
+            {
+              name: "Actions",
+              icon: (
+                <BsFillCollectionPlayFill className="text-2xl font-bold pl-2" />
+              ),
+            },
+          ].map((tab, index) =>
+            activeTab === tab.name ? (
+              <li
+                key={index}
+                onClick={() => setActiveTab(tab.name)}
+                className="py-1 text-2xl font-medium text-white flex items-center"
+              >
+                <MdMovieFilter className="text-3xl" />
+                <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+                  {tab.name}
+                </p>
+              </li>
+            ) : (
+              <BarIcon
+                key={index}
+                onClick={() => setActiveTab(tab.name)}
+                icon={tab.icon}
+                title={`${tab.name}`}
+              />
+            )
+          )}
           <BarIcon
             icon={<FiSearch className="text-2xl font-bold pl-2" />}
             title="Search"

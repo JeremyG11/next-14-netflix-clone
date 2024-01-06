@@ -1,111 +1,107 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
+import { BiChevronDown } from "react-icons/bi";
+import { IoNotifications, IoSearchSharp } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const currentPath = usePathname();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const isActive = (pathname: string) => currentPath === pathname;
 
   return (
-    <nav className="relative bg-transparent">
-      <div className="container px-6 py-3 mx-auto md:flex">
-        <div className="flex items-center justify-between">
-          <a href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="94" height="39">
-              <path
-                fill="#E2E8F0"
-                fillRule="nonzero"
-                d="M47.287 4.256c.64.03 1.25.275 1.734.695.659.626.832 1.67.52 2.506-1.213 2.504-4.097 4.177-6.068 4.73-1.18.279-2.67.279-3.745-.139-.52.313-.96 1.325-1.596.905-.92-.721-.123-1.85-.654-2.65-.11-.164-.386-.177-.524-.446-.729-1.6.173-3.131 1.178-4.349 1.677-1.876 6.485-3.966 9.155-1.252Zm-5.583 1.252c-.936.174-1.994.583-2.566 1.252-.572.67-.936 1.323-.589 2.018 1.214-.904 1.803-2.157 3.156-2.922 0-.14.207-.244 0-.348Zm5.653.348c-2.393-.209-4.196 1.6-5.896 3.34-.104.278-.728.59-.242.904 2.289.208 4.473-.452 6.138-1.983.486-.452.831-1.044.59-1.67a1.228 1.228 0 0 0-.59-.59Zm20.735 10.367c1.11 2.714 2.046 6.992 0 9.602-.555.626-1.525 1.203-2.15.73-2.288-1.843-3.258-4.488-4.68-6.854-.208-.104-.208.175-.312.28-.52 2.4.45 5.53-1.179 7.409-.624.104-1.208-.218-1.422-.835-.798-2.47.034-5.045.242-7.514.486-1.253.694-2.714 1.769-3.653 1.734.695 2.566 2.644 3.57 4.07.73 1.079 1.318 2.296 2.15 3.27.728-.313.37-1.267.348-1.844-.279-2.26-.903-4.348-1.493-6.505-.033-.556-.345-1.496.243-1.844 1.563.696 2.22 2.331 2.914 3.688Zm-10.472-.835c0 .522-.416 1.174-.763 1.252-3.329.522-7.04.209-10.16 1.252-.104.383.347.453.59.557 2.669.417 5.478.522 8.08 1.183 1.374.35 1.872 1.983 1.976 3.34.064 1.07-.346 2.365-1.387 3.096-2.565 1.635-6.484 1.565-9.085.07-.994-.56-1.942-1.46-2.011-2.574.006-.884.382-1.58 1.006-1.913 2.497-1.01 5.583-.452 7.733.834.138.696-.613.659-.972.905-2.393 1.392-4.196-1.565-6.415-.487-.312.208-.538.79-.174.974 2.74 1.218 5.791.348 8.496-.417.312-.105.694-.418.728-.73-.104-1.114-1.352-1.357-2.15-1.67-2.358-.591-4.958-.591-7.49-.835-.485-.104-1.104-.443-1.248-.835-.277-.834-.277-1.983.347-2.678 3.224-2.853 8.113-2.61 12.205-1.844.278.102.59.207.694.52ZM42.467 16.71c.312 3.34.486 6.436.416 9.95-.069.45-.589.556-.936.73-.554.104-1.271-.014-1.49-.313-.798-1.288-.52-3.027-.59-4.592.104-2.47.07-5.149.763-7.445.133-.334.52-.626.832-.418.832.418.97 1.253 1.005 2.088Zm38.526-.487c.166.281.34.716 0 .904-1.56.696-3.676.383-5.48.591-.485.418-.866 1.113-.694 1.74.175.104.33.263.521.243 1.11.07 2.774-.522 3.503.522.178.31-.024 1.47-.52 1.496-1.353.175-3.577-.17-4.231.175-.832.556-.763 1.634-1.075 2.505.59.382 1.207-.01 1.906-.105 1.285-.209 2.706-.591 3.989-.313.242.452.59.94.346 1.496-2.186 1.74-5.005 3.522-8.01 2.261-1.127-.507-1.63-2.226-1.247-3.687.242-1.044 1.317-2.052.658-3.166-.104-.487.174-.904.59-1.008 1.144 0 .901-1.427 1.49-2.088-.658-.73-2.322-.696-2.148-2.157.797-.417 1.769-.278 2.669-.417 2.046-.418 4.334-.661 6.416-.418.415.084.97.904 1.317 1.426ZM31.475 8.291c3.2 2.624 7.351 7.097 6.831 12.246-.624 4.07-4.924 7.131-8.565 8.106-3.537 1.043-7.975.939-11.582.104-.243.661-.485 1.46-1.248 1.74-.485.173-1.11.07-1.491-.244-1.075-1.009-.208-2.957-1.769-3.583-3.051-1.287-6.346-3.827-7.906-6.958-.208-.626.035-1.252.416-1.739 2.393-1.913 5.41-2.678 8.427-3.27.173.07.104-.174.242-.243.174-2.088.243-4.21.902-6.089a.54.54 0 0 1 .763-.174c1.907 1.461 1.005 4.21 1.838 6.193 3.64.174 7.282.347 10.16 2.4.97.8 1.207 2.328.9 3.201-.305.872-1.316 1.496-2.253 1.565-.624 0-1.803.06-1.734-.417.07-.478 2.121-1.261 1.491-1.914-.905-.938-5.438-1.496-8.247-1.844-.346-.07-.664.035-.664.418-.07 2.643-.278 5.565.173 8.106.035.174.243.383.416.417 4.959.8 10.195.347 14.079-2.505 1.803-1.46 2.393-3.514 2.08-5.775-1.56-6.297-8.114-10.09-13.489-12.524A37.823 37.823 0 0 0 4.011 2.342c-.988.073-2.554.415-2.565.766-.012.35 1.774.24 1.56.904-.214.664-2.029.27-2.566.105-.538-.166-.486-.94-.347-1.427C1.446.29 5.22.096 6.924.012c9.432-.244 18.552 3.36 24.55 8.28Zm-16.991 9.324c-2.393.034-4.924.278-7.144 1.113-.45.173-1.005.66-.659 1.252.902 1.217 2.19 2.217 3.399 2.922 1.207.704 2.809 1.6 4.265 1.81.347-2.262.347-4.488.312-6.82-.14-.069 0-.208-.173-.277Zm71.674-3.166c-.104 3.026-2.913 4.905-2.913 7.931.104.105.174.244.312.175 2.255-2.47 4.473-5.984 7.768-7.027.868-.07 1.652.687 1.977 1.252 1.144 2.296.868 5.532-.728 7.62-1.646 2.048-4.508 4.104-7.767 3.756a44.733 44.733 0 0 0-2.81 10.506c-.277.73-.935.07-1.351-.07-2.809-2.226-.502-8.12-.312-8.872.19-.75.942-2.519 1.492-4-1.318-2.365-.486-5.219.588-7.41.832-1.462 1.978-2.923 3.33-4.036.172 0 .31.036.414.175Zm5.584 3.757c-.416-.07-.59.487-.936.592-1.594 1.809-3.19 3.618-3.988 5.775 1.076.139 1.977-.557 2.914-.94 1.594-1.009 2.6-2.678 2.496-4.591-.07-.314-.347-.558-.486-.836Z"
-              />
-            </svg>
-          </a>
-
-          {/* Mobile menu button */}
-          <div className="flex lg:hidden">
-            <button
-              onClick={toggleMenu}
-              type="button"
-              className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
-              aria-label="toggle menu"
-            >
-              {isOpen ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 8h16M4 16h16"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-        <div
-          className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out md:mt-0 md:p-0 md:top-0 md:relative md:opacity-100 md:translate-x-0 md:flex md:items-center md:justify-between ${
-            isOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"
-          }`}
-        >
-          <div className="flex flex-col px-2 -mx-4 md:flex-row md:mx-10 md:py-0">
-            <a
-              href="#"
-              className="px-2.5 py-2 text-gray-700 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 md:mx-2"
-            >
-              Contact
-            </a>
-          </div>
-
-          <div className="relative mt-4 md:mt-0">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+    <header className="bg-transparent border-b border-gray-700">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-10">
+        <div className="py-6 flex items-center justify-between">
+          <div className="flex-1 md:flex md:items-center md:gap-14">
+            <Link href="/" className="block xl:pl-2">
               <svg
-                className="w-5 h-5 text-gray-400"
-                viewBox="0 0 24 24"
-                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                width="1024"
+                height="276.742"
+                viewBox="0 0 1024 276.742"
+                className="h-5 w-auto "
               >
                 <path
-                  d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                ></path>
+                  d="M140.803 258.904c-15.404 2.705-31.079 3.516-47.294 5.676l-49.458-144.856v151.073c-15.404 1.621-29.457 3.783-44.051 5.945v-276.742h41.08l56.212 157.021v-157.021h43.511v258.904zm85.131-157.558c16.757 0 42.431-.811 57.835-.811v43.24c-19.189 0-41.619 0-57.835.811v64.322c25.405-1.621 50.809-3.785 76.482-4.596v41.617l-119.724 9.461v-255.39h119.724v43.241h-76.482v58.105zm237.284-58.104h-44.862v198.908c-14.594 0-29.188 0-43.239.539v-199.447h-44.862v-43.242h132.965l-.002 43.242zm70.266 55.132h59.187v43.24h-59.187v98.104h-42.433v-239.718h120.808v43.241h-78.375v55.133zm148.641 103.507c24.594.539 49.456 2.434 73.51 3.783v42.701c-38.646-2.434-77.293-4.863-116.75-5.676v-242.689h43.24v201.881zm109.994 49.457c13.783.812 28.377 1.623 42.43 3.242v-254.58h-42.43v251.338zm231.881-251.338l-54.863 131.615 54.863 145.127c-16.217-2.162-32.432-5.135-48.648-7.838l-31.078-79.994-31.617 73.51c-15.678-2.705-30.812-3.516-46.484-5.678l55.672-126.75-50.269-129.992h46.482l28.377 72.699 30.27-72.699h47.295z"
+                  fill="#d81f26"
+                />
               </svg>
-            </span>
+            </Link>
+          </div>
 
-            <input
-              type="text"
-              className="w-full py-2 pl-10 pr-4 text-gray-700 border rounded-lg"
-              placeholder="Search"
-            />
+          <div className="md:flex md:items-center md:gap-12">
+            <nav className="hidden md:block">
+              <ul className="flex items-center gap-6 space-x-10 text-sm">
+                {[
+                  { path: "/", title: "Home" },
+                  { path: "/movies", title: "Movies" },
+                  { path: "/series", title: "Series" },
+                  {
+                    path: "/mylist",
+                    title: "My list",
+                    icons: <BiChevronDown className="text-xl mx-1" />,
+                  },
+                ].map((link, index) => (
+                  <li key={index} className="px-2">
+                    <Link
+                      href={link.path}
+                      className={`relative text-gray-300 flex transition hover:text-gray-500/75 ${
+                        isActive(link.path)
+                          ? "text-white before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-5 before:transform before:-translate-x-1/2 before:-translate-y-1/2"
+                          : ""
+                      }`}
+                    >
+                      {link.title}
+                      {link?.icons}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="flex items-center gap-4">
+              <div className="sm:flex items-center space-x-12 sm:gap-4">
+                <IoSearchSharp className="text-xl font-bold" />
+
+                <div className="hidden sm:flex">
+                  <div className="hidden sm:flex">
+                    <IoNotifications />
+                  </div>
+                </div>
+                <div className="hidden sm:flex items-center justify-center bg-red-500 rounded-full w-8 h-8 ">
+                  <div className="hidden sm:flex">G </div>
+                </div>
+              </div>
+
+              <div className="block md:hidden">
+                <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

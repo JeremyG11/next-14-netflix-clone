@@ -45,9 +45,11 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
       <div className="sm:px-16 px-8 space-y-8">
         <div className="border-b-2 border-gray-500 py-4 text-gray-500">
           <ul className="flex movies-center justify-between">
-            <li className="text-2xl font-bold text-white flex items-center ">
+            <li className="text-2xl font-medium text-white flex items-center ">
               <IoMdTrendingUp className="text-4xl" />
-              <p className="px-2"> Trends Now</p>
+              <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+                Trends Now
+              </p>
             </li>
             <BarIcon
               icon={<AiFillFire className="text-2xl font-bold pl-2" />}
