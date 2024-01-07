@@ -67,7 +67,10 @@ const Navbar = () => {
 
             <div className="flex items-center gap-4">
               <div className="sm:flex items-center space-x-12 sm:gap-4">
-                <IoSearchSharp className="text-xl font-bold" />
+                <Link href="/search">
+                  {" "}
+                  <IoSearchSharp className="text-xl font-bold" />
+                </Link>
 
                 <div className="hidden sm:flex">
                   <div className="hidden sm:flex">
