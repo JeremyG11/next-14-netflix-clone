@@ -26,4 +26,17 @@ export const moviesDiscovery = async (): Promise<DiscoveryMoviesProps> => {
   }
 };
 
-export const filterMovies = () => {};
+export const filterMovies = async (query: string) => {
+  try {
+    const res: AxiosResponse<{
+      page: number;
+      results: DiscoveryMovieApiResponse[];
+    }> = await apiInstance.get(`/search/movie?query=${encodeURI(query)}`);
+
+    const result = res.data;
+    return { page: result.page, results: result.results };
+  } catch (error: any) {
+    console.log("Error fetching movies:", error);
+    return error.message;
+  }
+};

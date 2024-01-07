@@ -10,6 +10,7 @@ import { Movie } from "../../types";
 import MovieCard from "./MovieCard";
 import { BarIcon } from "./BarIcon";
 import MovieCTA from "./MovieCTA";
+import SortByButtons from "./SortByButton";
 
 interface MoviesProps {
   movies: Movie[];
@@ -83,29 +84,7 @@ export default function Movies({ movies }: MoviesProps) {
         ))}
       </div>
       <div className="my-10 flex items-center justify-between flex-nowrap">
-        <div className="w-1/2 flex items-center space-x-6">
-          <p className="text-gray-500 font-semibold">Sort by:</p>
-          <button
-            type="button"
-            className="py-[6px] px-8 text-sm font-semibold focus:outline-none rounded-full text-gray-100 bg-red-500 "
-          >
-            Latest
-          </button>
-          <button
-            type="button"
-            className="flex items-center justify-between py-[6px] px-5 w-24 focus:outline-none rounded-full text-gray-100 bg-gray-900 "
-          >
-            <p className="text-sm font-semibold">Year</p>
-            <BiChevronDown className="text-xl" />
-          </button>
-          <button
-            type="button"
-            className="flex items-center justify-between py-[6px] px-4 w-24 focus:outline-none rounded-full text-gray-100 bg-gray-900 "
-          >
-            <p className="text-sm font-semibold"> A-Z</p>
-            <BiChevronDown className="text-xl" />
-          </button>
-        </div>
+        <SortByButtons />
         <div className="flex items-center">
           <IoStar className="text-yellow-500 text-base" />
           <div className=" h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
