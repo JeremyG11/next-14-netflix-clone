@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -11,28 +11,28 @@ export const Search = () => {
   );
   const router = useRouter();
 
-  const onSearch = (event: React.FormEvent) => {
-    event.preventDefault();
+  useEffect(() => {
+    const searchDebounce = setTimeout(() => {
+      if (typeof searchQuery !== "string" || searchQuery === undefined) {
+        router.push(`/movies`);
+        return;
+      }
 
-    if (typeof searchQuery !== "string") {
-      return;
-    }
+      const encodedQuery = encodeURI(searchQuery);
+      router.push(`/movies?q=${encodedQuery}`);
+    }, 300);
 
-    const encodedQuery = encodeURI(searchQuery);
-    router.push(`/movies?q=${encodedQuery}`);
-  };
+    return () => clearTimeout(searchDebounce);
+  }, [searchQuery, search, router]);
 
   return (
-    <form
-      onSubmit={onSearch}
-      className="sm:flex rounded-full border border-gray-200"
-    >
-      <div className="sm:flex-1">
+    <form className="sm:flex justify-between w-full rounded-full border border-gray-200">
+      <div className="">
         <input
           type="text"
           value={searchQuery || ""}
           placeholder="Search here ..."
-          className="w-full bg-transparent p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-yellow-400"
+          className="w-96 bg-transparent p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-yellow-400"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>

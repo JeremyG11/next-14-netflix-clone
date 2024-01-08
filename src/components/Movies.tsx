@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import { BiChevronDown } from "react-icons/bi";
+import { MdMovieFilter } from "react-icons/md";
 import { BsFillCollectionPlayFill } from "react-icons/bs";
-import { MdLocalMovies, MdMovieFilter } from "react-icons/md";
 
 import { Movie } from "../../types";
 import MovieCard from "./MovieCard";
@@ -23,7 +22,7 @@ export default function Movies({ movies }: MoviesProps) {
     tabs.some((tab) => tab.name === tabname);
 
   return (
-    <div className="sm:px-16 px-8 py-8 ">
+    <div className="sm:px-16 px-8 py-6 ">
       <div className="border-b-2 border-gray-500 py-4 text-gray-500">
         <ul className="flex movies-center justify-between">
           {[
