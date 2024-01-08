@@ -29,7 +29,7 @@ export const filterMovies = async (query: string, page?: number) => {
       page: number;
       results: DiscoveryMovieApiResponse[];
     }> = await apiInstance.get(
-      `/search/movie?query=${encodeURI(query)}?limit=8&page=${page ?? 1}`
+      `/search/movie?query=${encodeURI(query)}&limit=8&page=${page ?? 1}`
     );
 
     const result = res.data;

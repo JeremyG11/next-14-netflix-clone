@@ -30,7 +30,7 @@ export default async function SearchPage({
         <div className=" mx-auto pt-16 px-24 w-full  flex justify-between">
           <div className="py-1 w-1/2 text-4xl font-medium text-white flex items-center">
             <MdMovieFilter className="text-5xl" />
-            <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+            <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
               Movies
             </p>
           </div>

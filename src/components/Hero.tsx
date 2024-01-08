@@ -43,8 +43,8 @@ export default function Hero() {
                   <span className="px-2 text-xl text-white">
                     {(830 / 100).toFixed(1)}
                   </span>
-                  Season <span className="px-1 text-red-600">8</span> - Episode
-                  <span className="px-1 text-red-600">14</span> - Still gotta
+                  Season <span className="px-1 text-primary">8</span> - Episode
+                  <span className="px-1 text-primary">14</span> - Still gotta
                   means something
                 </p>
               </div>
@@ -61,7 +61,7 @@ export default function Hero() {
               <div className="mt-8 space-x-8 flex items-center">
                 <button
                   type="button"
-                  className="flex items-center justify-between py-3 px-6 shadow-2xl shadow-red-600 focus:outline-none rounded-full text-gray-100 bg-red-600"
+                  className="flex items-center justify-between py-3 px-6 shadow-2xl shadow-primary focus:outline-none rounded-full text-gray-100 bg-primary"
                 >
                   <FaPlay className="" />
                   <p className="font-semibold text-sm uppercase ml-3">Watch</p>
@@ -85,7 +85,7 @@ export default function Hero() {
           <button
             key={index}
             type="button"
-            className={`bg-red-400 h-1 w-10 rounded ${
+            className={`bg-primary h-1 w-10 rounded ${
               index === activeSlide
                 ? 'aria-current="true"'
                 : 'aria-current="false"'

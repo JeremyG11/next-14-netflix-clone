@@ -25,7 +25,7 @@ export default function SortByButtons() {
             pathname + "?q" + createQueryString("sort_by", "popularity.asc")
           );
         }}
-        className="py-[6px] px-8 text-sm font-semibold focus:outline-none rounded-full text-gray-100 bg-red-500 "
+        className="py-[6px] px-8 text-sm font-semibold focus:outline-none rounded-full text-gray-100 bg-primary "
       >
         Latest
       </button>

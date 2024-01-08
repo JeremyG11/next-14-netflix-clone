@@ -39,7 +39,7 @@ export const Search = ({ placeholder }: { placeholder: string }) => {
 
       <button
         type="submit"
-        className="group rounded-full ml-2 flex w-full items-center justify-center bg-rose-600 py-2 px-2.5 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
+        className="group rounded-full ml-2 flex w-full items-center justify-center bg-primary py-2 px-2.5 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
       >
         <IoSearchSharp className="text-xl font-bold" />
       </button>

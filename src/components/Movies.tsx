@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
+import { IoMdFilm } from "react-icons/io";
 import { FiSearch } from "react-icons/fi";
 import { MdMovieFilter } from "react-icons/md";
 import { BsFillCollectionPlayFill } from "react-icons/bs";
 
+import MovieCTA from "./MovieCTA";
 import { Movie } from "../../types";
 import MovieCard from "./MovieCard";
 import { BarIcon } from "./BarIcon";
-import MovieCTA from "./MovieCTA";
 import SortByButtons from "./SortByButton";
 
 interface MoviesProps {
@@ -40,9 +41,7 @@ export default function Movies({ movies }: MoviesProps) {
             },
             {
               name: "Actions",
-              icon: (
-                <BsFillCollectionPlayFill className="text-2xl font-bold pl-2" />
-              ),
+              icon: <IoMdFilm className="text-2xl font-bold pl-2" />,
             },
           ].map((tab, index) =>
             activeTab === tab.name ? (
@@ -52,7 +51,7 @@ export default function Movies({ movies }: MoviesProps) {
                 className="py-1 text-2xl font-medium text-white flex items-center"
               >
                 <MdMovieFilter className="text-3xl" />
-                <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+                <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
                   {tab.name}
                 </p>
               </li>
@@ -94,11 +93,16 @@ export default function Movies({ movies }: MoviesProps) {
         </div>
       </div>
       <section className="mt-4 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-        {movies?.map((movie: Movie, index: number) => (
+        {movies?.slice(0, 15).map((movie: Movie, index: number) => (
           <MovieCard key={movie.id} movie={movie} index={index} />
         ))}
       </section>
       <MovieCTA />
+      <section className="mt-4 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+        {movies?.slice(15, 20).map((movie: Movie, index: number) => (
+          <MovieCard key={movie.id} movie={movie} index={index} />
+        ))}
+      </section>
     </div>
   );
 }

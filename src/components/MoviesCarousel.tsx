@@ -31,10 +31,10 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
           className="absolute left-0 block p-3"
           onClick={() => previous()}
         >
-          <MdOutlineArrowBackIos className="text-4xl text-red-600" />
+          <MdOutlineArrowBackIos className="text-4xl text-white" />
         </button>
         <button className="absolute right-0 block p-3" onClick={() => next()}>
-          <MdOutlineArrowForwardIos className="text-4xl text-red-600" />
+          <MdOutlineArrowForwardIos className="text-4xl text-white" />
         </button>
       </div>
     );
@@ -47,7 +47,7 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
           <ul className="flex movies-center justify-between">
             <li className="text-2xl font-medium text-white flex items-center ">
               <IoMdTrendingUp className="text-4xl" />
-              <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+              <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
                 Trends Now
               </p>
             </li>

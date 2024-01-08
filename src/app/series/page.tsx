@@ -7,6 +7,7 @@ import MovieCard from "@/components/MovieCard";
 import Pagination from "@/components/Pagination";
 import SortByButtons from "@/components/SortByButton";
 import { filterSeries } from "@/libs/api/getSeries";
+import MovieCTA from "@/components/MovieCTA";
 
 export default async function Series({
   searchParams,
@@ -32,7 +33,7 @@ export default async function Series({
         <div className=" mx-auto pt-16 px-24 w-full  flex justify-between">
           <div className="py-1 w-1/2 text-4xl font-medium text-white flex items-center">
             <BsFillCollectionPlayFill className="text-5xl" />
-            <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
+            <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
               TV Series
             </p>
           </div>
@@ -49,9 +50,19 @@ export default async function Series({
         </div>
         <div className="sm:px-24 px-8 py-8 h-full ">
           <section className="mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-            {searchResult?.results?.map((movie: Movie, index: number) => (
-              <MovieCard key={movie.id} movie={movie} index={index} />
-            ))}
+            {searchResult?.results
+              ?.slice(0, 8)
+              .map((movie: Movie, index: number) => (
+                <MovieCard key={movie.id} movie={movie} index={index} />
+              ))}
+          </section>
+          <MovieCTA />
+          <section className="mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+            {searchResult?.results
+              ?.slice(10, 14)
+              .map((movie: Movie, index: number) => (
+                <MovieCard key={movie.id} movie={movie} index={index} />
+              ))}
           </section>
           <Pagination />
         </div>

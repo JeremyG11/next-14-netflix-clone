@@ -53,7 +53,7 @@ const Navbar = () => {
                       href={link.path}
                       className={`relative text-gray-300 flex transition hover:text-gray-500/75 ${
                         isActive(link.path)
-                          ? "text-white before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-5 before:transform before:-translate-x-1/2 before:-translate-y-1/2"
+                          ? "text-white before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-5 before:transform before:-translate-x-1/2 before:-translate-y-1/2"
                           : ""
                       }`}
                     >
@@ -76,7 +76,7 @@ const Navbar = () => {
                     <IoNotifications />
                   </div>
                 </div>
-                <div className="hidden sm:flex items-center justify-center bg-red-500 rounded-full w-8 h-8 ">
+                <div className="hidden sm:flex items-center justify-center bg-primary rounded-full w-8 h-8 ">
                   <div className="hidden sm:flex">G </div>
                 </div>
               </div>

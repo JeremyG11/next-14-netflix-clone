@@ -37,7 +37,7 @@ export default function MovieCTA() {
           <div className="mt-8 space-x-8 flex items-center">
             <button
               type="button"
-              className="flex items-center justify-between py-3 px-6 shadow-2xl shadow-red-600 focus:outline-none rounded-full text-gray-100 bg-red-600"
+              className="flex items-center justify-between py-3 px-6 shadow-2xl shadow-primary focus:outline-none rounded-full text-gray-100 bg-primary"
             >
               <FaPlay className="" />
               <p className="font-semibold text-sm uppercase ml-3">Watch</p>
