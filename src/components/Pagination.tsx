@@ -1,28 +1,31 @@
 "use client";
-import React, { useCallback, useState } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { formUrlQuery } from "@/libs/utils/queries";
 
 export default function Pagination() {
   const router = useRouter();
-  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
+
   const handlePageChange = (page: number) => {
+    let pageNum = "";
+
     setCurrentPage(page);
+    const baseUrl = window.location.pathname;
+
+    if (currentPage && currentPage !== 1) {
+      pageNum = formUrlQuery({
+        params: searchParams.toString(),
+        key: "page",
+        value: currentPage.toString(),
+      });
+    }
     router.push(
-      pathname + "&page=" + createQueryString("page", currentPage.toString())
+      `${baseUrl}?${searchParams}&page${encodeURI(currentPage.toString())}`
     );
-    console.log(currentPage);
   };
 
-  const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams, currentPage]
-  );
   return (
     <div>
       <ol className="flex justify-center gap-1 text-xs font-medium">

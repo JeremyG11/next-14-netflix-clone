@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { FaPlay, FaPlus } from "react-icons/fa";
-import { HiOutlinePlusSm } from "react-icons/hi";
 import { IoStar } from "react-icons/io5";
+import { FaPlay, FaPlus } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+
 import Navbar from "./Navbar";
 
 export default function Hero() {

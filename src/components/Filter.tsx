@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IoSearchSharp } from "react-icons/io5";
 
-export const Search = () => {
+export const Search = ({ placeholder }: { placeholder: string }) => {
   const search = useSearchParams();
+  const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState<string | null>(
     search ? search.get("q") : ""
   );
@@ -14,32 +15,31 @@ export const Search = () => {
   useEffect(() => {
     const searchDebounce = setTimeout(() => {
       if (typeof searchQuery !== "string" || searchQuery === undefined) {
-        router.push(`/movies`);
         return;
       }
 
       const encodedQuery = encodeURI(searchQuery);
-      router.push(`/movies?q=${encodedQuery}`);
+      router.push(`${pathname}?q=${encodedQuery}`);
     }, 300);
 
     return () => clearTimeout(searchDebounce);
   }, [searchQuery, search, router]);
 
   return (
-    <form className="sm:flex justify-between w-full rounded-full border border-gray-200">
+    <form className="sm:flex justify-between w-full rounded-full border border-gray-500">
       <div className="">
         <input
           type="text"
           value={searchQuery || ""}
-          placeholder="Search here ..."
-          className="w-96 bg-transparent p-3 text-gray-700 shadow-sm transition focus:border-white focus:outline-none focus:ring focus:ring-yellow-400"
+          placeholder={`${placeholder}`}
+          className="w-96 bg-transparent px-6 py-2 text-gray-500 shadow-sm transition placeholder:text-gray-600 placeholder:tracking-wide focus:border-white focus:outline-none "
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 
       <button
         type="submit"
-        className="group rounded-full mt-4 flex w-full items-center justify-center bg-rose-600 p-3 text-white transition focus:outline-none focus:ring focus:ring-yellow-400 sm:mt-0 sm:w-auto"
+        className="group rounded-full ml-2 flex w-full items-center justify-center bg-rose-600 py-2 px-2.5 text-white transition focus:outline-none sm:mt-0 sm:w-auto"
       >
         <IoSearchSharp className="text-xl font-bold" />
       </button>

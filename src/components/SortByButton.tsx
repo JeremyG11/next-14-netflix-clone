@@ -18,7 +18,7 @@ export default function SortByButtons() {
   );
   return (
     <div className="w-full flex items-center space-x-6">
-      <p className="text-gray-500 font-semibold">Sort by:</p>
+      <p className="text-gray-400 text-sm font-medium">Sort by :</p>
       <button
         onClick={() => {
           router.push(

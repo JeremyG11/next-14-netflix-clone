@@ -1,19 +1,21 @@
+import { BsFillCollectionPlayFill } from "react-icons/bs";
+
+import { Movie } from "../../../types";
+import Navbar from "@/components/Navbar";
 import { Search } from "@/components/Filter";
 import MovieCard from "@/components/MovieCard";
-import Navbar from "@/components/Navbar";
-import { filterMovies } from "@/libs/api/getMovies";
-import { Movie } from "../../../types";
-import { MdMovieFilter } from "react-icons/md";
-import SortByButtons from "@/components/SortByButton";
 import Pagination from "@/components/Pagination";
+import SortByButtons from "@/components/SortByButton";
+import { filterSeries } from "@/libs/api/getSeries";
 
-export default async function SearchPage({
+export default async function Series({
   searchParams,
 }: {
   searchParams: { q: string | undefined };
 }) {
-  const searchResult = await filterMovies(searchParams.q!);
+  const searchResult = await filterSeries(searchParams.q!);
 
+  console.log(searchParams);
   return (
     <section
       className="relative bg-cover bg-no-repeat  bg-top bg-fixed h-full min-h-full"
@@ -29,9 +31,9 @@ export default async function SearchPage({
 
         <div className=" mx-auto pt-16 px-24 w-full  flex justify-between">
           <div className="py-1 w-1/2 text-4xl font-medium text-white flex items-center">
-            <MdMovieFilter className="text-5xl" />
+            <BsFillCollectionPlayFill className="text-5xl" />
             <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-red-600 before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
-              Movies
+              TV Series
             </p>
           </div>
           <div className=" flex w-5/12 gap-4 justify-center items-end flex-col">
@@ -42,7 +44,7 @@ export default async function SearchPage({
         </div>
         <div className="mr-10 mt-4  flex items-center justify-end px-24">
           <div className="flex w-96">
-            <Search placeholder="Search movie" />
+            <Search placeholder="Search series" />
           </div>
         </div>
         <div className="sm:px-24 px-8 py-8 h-full ">

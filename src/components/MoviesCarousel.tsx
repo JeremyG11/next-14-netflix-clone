@@ -31,10 +31,10 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
           className="absolute left-0 block p-3"
           onClick={() => previous()}
         >
-          <MdOutlineArrowBackIos className="text-5xl text-white" />
+          <MdOutlineArrowBackIos className="text-4xl text-red-600" />
         </button>
         <button className="absolute right-0 block p-3" onClick={() => next()}>
-          <MdOutlineArrowForwardIos className="text-5xl text-white" />
+          <MdOutlineArrowForwardIos className="text-4xl text-red-600" />
         </button>
       </div>
     );

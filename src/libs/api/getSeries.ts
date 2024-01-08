@@ -7,12 +7,12 @@ interface DiscoveryMoviesProps {
   results: DiscoveryMovieApiResponse[];
 }
 
-export const moviesDiscovery = async (): Promise<DiscoveryMoviesProps> => {
+export const getSeries = async (): Promise<DiscoveryMoviesProps> => {
   try {
     const res: AxiosResponse<{
       page: number;
       results: DiscoveryMovieApiResponse[];
-    }> = await apiInstance.get(`/discover/movie/`);
+    }> = await apiInstance.get(`/discover/tv/`);
 
     const result = res.data;
     return { page: result.page, results: result.results };
@@ -22,14 +22,14 @@ export const moviesDiscovery = async (): Promise<DiscoveryMoviesProps> => {
   }
 };
 
-export const filterMovies = async (query: string, page?: number) => {
+export const filterSeries = async (query: string, page?: number) => {
   try {
-    if (!query) return moviesDiscovery();
+    if (!query) return getSeries();
     const res: AxiosResponse<{
       page: number;
       results: DiscoveryMovieApiResponse[];
     }> = await apiInstance.get(
-      `/search/movie?query=${encodeURI(query)}?limit=8&page=${page ?? 1}`
+      `/search/tv?query=${encodeURI(query)}&page=${page ?? 1}&limit=12`
     );
 
     const result = res.data;
