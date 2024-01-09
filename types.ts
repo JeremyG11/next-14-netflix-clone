@@ -47,3 +47,14 @@ export type SearchParamProps = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export type Genre = {
+  id: number;
+  name: string;
+};
+
+export type GenreWithMovies = {
+  id: number;
+  genre_name: string;
+  hasMovies: boolean;
+};

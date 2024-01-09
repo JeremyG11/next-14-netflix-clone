@@ -22,14 +22,21 @@ export const moviesDiscovery = async (): Promise<DiscoveryMoviesProps> => {
   }
 };
 
-export const filterMovies = async (query: string, page?: number) => {
+export const filterMovies = async (
+  query: string,
+  page?: number,
+  sort_by?: string,
+  year?: number
+) => {
   try {
     if (!query) return moviesDiscovery();
     const res: AxiosResponse<{
       page: number;
       results: DiscoveryMovieApiResponse[];
     }> = await apiInstance.get(
-      `/search/movie?query=${encodeURI(query)}&limit=8&page=${page ?? 1}`
+      `/search/movie?query=${encodeURI(
+        query
+      )}&primary_release_year=${year}&sort_by=${sort_by}&page=${page ?? 1}`
     );
 
     const result = res.data;

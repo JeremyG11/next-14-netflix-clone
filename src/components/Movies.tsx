@@ -7,15 +7,16 @@ import { MdMovieFilter } from "react-icons/md";
 import { BsFillCollectionPlayFill } from "react-icons/bs";
 
 import MovieCTA from "./MovieCTA";
-import { Movie } from "../../types";
+import { GenreWithMovies, Movie } from "../../types";
 import MovieCard from "./MovieCard";
 import { BarIcon } from "./BarIcon";
 import SortByButtons from "./SortByButton";
 
 interface MoviesProps {
   movies: Movie[];
+  generesWithMovies: GenreWithMovies[];
 }
-export default function Movies({ movies }: MoviesProps) {
+export default function Movies({ movies, generesWithMovies }: MoviesProps) {
   const tabs = [{ name: "Movies" }, { name: "Series" }, { name: "Actions" }];
 
   const [activeTab, setActiveTab] = useState("Movies");
@@ -25,7 +26,7 @@ export default function Movies({ movies }: MoviesProps) {
   return (
     <div className="sm:px-16 px-8 py-6 ">
       <div className="border-b-2 border-gray-500 py-4 text-gray-500">
-        <ul className="flex movies-center justify-between">
+        <ul className="block md:flex movies-center justify-between">
           {[
             {
               name: "Movies",
@@ -70,22 +71,24 @@ export default function Movies({ movies }: MoviesProps) {
           />
         </ul>
       </div>
-      <div className="my-10 flex justify-between flex-nowrap">
-        {[3, 6, 8, 9, 7, 0, 4].map((index) => (
+      <div className="my-10 flex overflow-hidden justify-between flex-nowrap">
+        {generesWithMovies?.slice(4, 12).map((genre, index) => (
           <button
             key={index}
-            type="button"
-            className="py-[8px] px-6 text-sm font-medium focus:outline-none rounded-full text-gray-100 bg-gray-800 "
+            className={`mr-6 py-[8px] px-6 text-sm font-medium focus:outline-none rounded-full text-gray-100 ${
+              !genre.hasMovies ? "bg-gray-800" : "bg-primary"
+            } `}
           >
-            Alternative
+            {genre.genre_name}
           </button>
         ))}
       </div>
-      <div className="my-10 flex items-center justify-between flex-nowrap">
+      <div className="my-10 w-full block space-y-3 md:space-y-0 md:flex items-center justify-between flex-nowrap">
         <SortByButtons />
+
         <div className="flex items-center">
           <IoStar className="text-yellow-500 text-base" />
-          <div className=" h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+          <div className="hidden h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
             <div className="h-5  rounded" style={{ width: 208 }}></div>
           </div>
           <span className="text-sm font-medium text-gray-500 dark:text-gray-400"></span>

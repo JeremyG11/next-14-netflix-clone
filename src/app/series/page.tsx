@@ -16,7 +16,6 @@ export default async function Series({
 }) {
   const searchResult = await filterSeries(searchParams.q!);
 
-  console.log(searchParams);
   return (
     <section
       className="relative bg-cover bg-no-repeat  bg-top bg-fixed h-full min-h-full"

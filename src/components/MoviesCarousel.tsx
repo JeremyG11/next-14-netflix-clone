@@ -10,14 +10,18 @@ import {
 } from "react-icons/md";
 
 import MovieCard from "./MovieCard";
-import { Movie } from "../../types";
+import { GenreWithMovies, Movie } from "../../types";
 import { BarIcon } from "./BarIcon";
 
 interface MoviesCarouselProp {
   movies: Movie[];
+  generesWithMovies: GenreWithMovies[];
 }
 
-export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
+export const MoviesCarousel = ({
+  movies,
+  generesWithMovies,
+}: MoviesCarouselProp) => {
   const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
     const {
       carouselState: { currentSlide },
@@ -44,7 +48,7 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
     <>
       <div className="sm:px-16 px-8 space-y-8">
         <div className="border-b-2 border-gray-500 py-4 text-gray-500">
-          <ul className="flex movies-center justify-between">
+          <ul className="block md:flex movies-center justify-between">
             <li className="text-2xl font-medium text-white flex items-center ">
               <IoMdTrendingUp className="text-4xl" />
               <p className="relative py-4 px-2 ml-2 before:content-[''] before:bg-primary before:p-1 before:absolute before:rounded-full before:left-1/2 before:-bottom-1 before:transform before:-translate-x-1/2 before:-translate-y-1/2">
@@ -65,14 +69,15 @@ export const MoviesCarousel = ({ movies }: MoviesCarouselProp) => {
             />
           </ul>
         </div>
-        <div className="flex justify-between flex-nowrap">
-          {[3, 6, 8, 9, 7, 0, 4].map((index) => (
+        <div className="my-10 flex overflow-hidden justify-between flex-nowrap">
+          {generesWithMovies?.slice(4, 12).map((genre, index) => (
             <button
               key={index}
-              type="button"
-              className="py-[8px] px-6 text-sm font-medium focus:outline-none rounded-full text-gray-100 bg-gray-800 "
+              className={`mr-6 py-[8px] px-6 text-sm font-medium focus:outline-none rounded-full text-gray-100 ${
+                !genre.hasMovies ? "bg-gray-800" : "bg-primary"
+              } `}
             >
-              Alternative
+              {genre.genre_name}
             </button>
           ))}
         </div>

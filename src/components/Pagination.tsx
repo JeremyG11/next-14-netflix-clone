@@ -1,29 +1,18 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { formUrlQuery } from "@/libs/utils/queries";
+import React from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function Pagination() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const handlePageChange = (page: number) => {
-    let pageNum = "";
+  const handlePageChange = (event: React.MouseEvent, page: number) => {
+    event.preventDefault();
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", page.toString());
 
-    setCurrentPage(page);
-    const baseUrl = window.location.pathname;
-
-    if (currentPage && currentPage !== 1) {
-      pageNum = formUrlQuery({
-        params: searchParams.toString(),
-        key: "page",
-        value: currentPage.toString(),
-      });
-    }
-    router.push(
-      `${baseUrl}?${searchParams}&page${encodeURI(currentPage.toString())}`
-    );
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -52,7 +41,7 @@ export default function Pagination() {
 
         <li>
           <button
-            onClick={() => handlePageChange(1)}
+            onClick={(event) => handlePageChange(event, 1)}
             className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
           >
             1
@@ -61,7 +50,7 @@ export default function Pagination() {
 
         <li>
           <button
-            onClick={() => handlePageChange(2)}
+            onClick={(e) => handlePageChange(e, 2)}
             className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
           >
             2
@@ -70,7 +59,7 @@ export default function Pagination() {
 
         <li>
           <button
-            onClick={() => handlePageChange(3)}
+            onClick={(e) => handlePageChange(e, 3)}
             className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
           >
             3
@@ -79,7 +68,7 @@ export default function Pagination() {
 
         <li>
           <button
-            onClick={() => handlePageChange(4)}
+            onClick={(e) => handlePageChange(e, 4)}
             className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
           >
             4
