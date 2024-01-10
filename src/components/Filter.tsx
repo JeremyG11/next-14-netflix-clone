@@ -8,25 +8,27 @@ export const Search = ({ placeholder }: { placeholder: string }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState<string | null>(
-    searchParams.get("q") || ""
+    searchParams ? searchParams.get("q") : ""
   );
   const router = useRouter();
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
+
     const searchDebounce = setTimeout(() => {
       if (
         typeof searchQuery === "string" &&
-        searchQuery !== undefined &&
-        searchQuery !== ""
+        searchQuery !== "" &&
+        searchQuery !== undefined
       ) {
-        params.set("q", params.get("q") || searchQuery);
+        params.set("q", encodeURI(searchQuery));
         router.push(`${pathname}?${params.toString()}`);
       } else {
         params.delete("q");
         router.push(`${pathname}?${params.toString()}`);
       }
     }, 300);
+
     return () => clearTimeout(searchDebounce);
   }, [searchQuery, searchParams, router]);
 
