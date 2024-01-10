@@ -5,34 +5,30 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IoSearchSharp } from "react-icons/io5";
 
 export const Search = ({ placeholder }: { placeholder: string }) => {
-  const search = useSearchParams();
+  const searchParams = useSearchParams();
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState<string | null>(
-    search ? search.get("q") : ""
+    searchParams.get("q") || ""
   );
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
-
     const searchDebounce = setTimeout(() => {
       if (
-        typeof searchQuery !== "string" ||
-        searchQuery === "" ||
-        searchQuery === undefined
+        typeof searchQuery === "string" &&
+        searchQuery !== undefined &&
+        searchQuery !== ""
       ) {
-        setSearchQuery("");
-        params.delete("q");
-        return;
+        params.set("q", params.get("q") || searchQuery);
+        router.push(`${pathname}?${params.toString()}`);
       } else {
-        const encodedQuery = encodeURI(searchQuery);
-        router.push(`${pathname}?q=${encodedQuery}`);
+        params.delete("q");
+        router.push(`${pathname}?${params.toString()}`);
       }
     }, 300);
-
     return () => clearTimeout(searchDebounce);
-  }, [searchQuery, search, router]);
+  }, [searchQuery, searchParams, router]);
 
   return (
     <form className="flex justify-between w-full rounded-full border border-gray-500">

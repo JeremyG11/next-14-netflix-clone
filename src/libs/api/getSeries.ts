@@ -17,7 +17,7 @@ export const getSeries = async (): Promise<DiscoveryMoviesProps> => {
     const result = res.data;
     return { page: result.page, results: result.results };
   } catch (error: any) {
-    console.log("Error fetching movies:", error);
+    // console.log("Error fetching movies:", error);
     return error.message;
   }
 };
@@ -35,7 +35,7 @@ export const filterSeries = async (query: string, page?: number) => {
     const result = res.data;
     return { page: result.page, results: result.results };
   } catch (error: any) {
-    console.log("Error fetching movies:", error);
+    // console.log("Error fetching movies:", error);
     return error.message;
   }
 };
@@ -49,7 +49,7 @@ export const getMovieGenres = async () => {
     const result = res.data;
     return { genres: result.genres };
   } catch (error: any) {
-    console.log("Error fetching movies:", error);
+    // "Error fetching movies:", error);
     return error.message;
   }
 };

@@ -19,7 +19,9 @@ function MovieCard({ movie }: MovieCardProp) {
         <p className="text-lg font-semibold truncate">{movie.title}</p>
 
         <div className="flex items-center  text-gray-500 justify-between">
-          <p className="text-sm font-medium">2023</p>
+          <p className="text-sm font-medium">
+            {movie.release_date.split("-")[0]}
+          </p>
           <div className="flex items-center justify-between w-1/2">
             <AiFillHeart />
             <IoEye />
