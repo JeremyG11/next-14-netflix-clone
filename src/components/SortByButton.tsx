@@ -58,7 +58,7 @@ export default function SortByButtons() {
           <BiChevronDown className="text-xl" />
         </button>
         <button
-          onClick={() => handleSortBy("with_genres", "action")}
+          onClick={() => handleSortBy("with_genres", "Music")}
           className="flex items-center justify-between py-[6px] px-4 w-24 focus:outline-none rounded-full text-gray-100 bg-gray-900 "
         >
           <p className="text-sm font-semibold">Genre</p>

@@ -17,6 +17,7 @@ export default async function SearchPage({
     sort_by?: string;
     page?: string;
     primary_release_year?: string;
+    with_genres?: string;
   };
 }) {
   const page = Number(searchParams?.page) || 1;
@@ -26,7 +27,8 @@ export default async function SearchPage({
     searchParams?.q || "",
     page,
     searchParams?.sort_by,
-    year!
+    year!,
+    searchParams?.with_genres
   );
 
   return (

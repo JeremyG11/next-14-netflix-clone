@@ -27,17 +27,20 @@ export const moviesDiscovery = async (
       url += `primary_release_year=${year}&`;
     }
     if (with_genres) {
-      url += `with_genres=${with_genres}&`;
+      url += `with_genres=${with_genres}`;
     }
 
     const res: AxiosResponse<{
       page: number;
       results: DiscoveryMovieApiResponse[];
     }> = await apiInstance.get(url);
+
     const result = res.data;
+    console.log(url);
 
     return { page: result.page, results: result.results };
   } catch (error: any) {
+    console.log(error.message);
     return error.message;
   }
 };
@@ -62,6 +65,9 @@ export const filterMovies = async (
       url += `&primary_release_year=${year}`;
     }
 
+    if (with_genres) {
+      url += `&with_genres=${with_genres}`;
+    }
     if (page) {
       url += `&page=${page}`;
     } else {
