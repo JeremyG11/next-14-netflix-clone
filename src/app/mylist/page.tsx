@@ -32,14 +32,7 @@ export default async function MyList() {
             </div>
           </div>
         </div>
-        <div className="mt-4 px-8 flex items-center md:justify-end md:px-24 md:mr-10">
-          <div className="w-full mt-4 flex md:w-96">
-            <Search placeholder="Search movie" />
-          </div>
-        </div>
-        <div className="sm:px-24 px-8 py-8 h-full ">
-          <Pagination />
-        </div>
+        <div className="mt-4 px-8 flex items-center md:justify-end md:px-24 md:mr-10"></div>
       </div>
     </section>
   );

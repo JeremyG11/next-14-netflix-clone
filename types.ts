@@ -15,6 +15,13 @@ export type Movie = {
   vote_count: number;
 };
 
+export interface APIResponse {
+  page: number;
+  results: DiscoveryMovieApiResponse[];
+  total_pages: number;
+  total_results: number;
+}
+
 export interface DiscoveryMovieApiResponse {
   adult: boolean;
   backdrop_path: string;
@@ -31,17 +38,6 @@ export interface DiscoveryMovieApiResponse {
   vote_average: number;
   vote_count: number;
 }
-
-export type UrlQueryParams = {
-  params: string;
-  key: string;
-  value: string | null;
-};
-
-export type RemoveUrlQueryParams = {
-  params: string;
-  keysToRemove: string[];
-};
 
 export type SearchParamProps = {
   params: { id: string };

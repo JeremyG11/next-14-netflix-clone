@@ -21,7 +21,7 @@ export const Search = ({ placeholder }: { placeholder: string }) => {
         searchQuery !== "" &&
         searchQuery !== undefined
       ) {
-        params.set("q", encodeURI(searchQuery));
+        params.set("q", searchQuery);
         router.push(`${pathname}?${params.toString()}`);
       } else {
         params.delete("q");

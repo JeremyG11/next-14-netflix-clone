@@ -79,7 +79,11 @@ export default async function SearchPage({
               )}
             </Suspense>
           </section>
-          <Pagination pages={500} />
+          {searchResult.total_pages && (
+            <Pagination
+              pages={searchParams?.q ? searchResult.total_pages : 500}
+            />
+          )}
         </div>
       </div>
     </section>

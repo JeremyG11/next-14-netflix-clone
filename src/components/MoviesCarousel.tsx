@@ -23,13 +23,13 @@ export const MoviesCarousel = ({
   medias,
   generesWithMovies,
 }: MoviesCarouselProp) => {
-  const filterOnlyMovies = medias?.filter(
-    (movie) => movie?.media_type === "movie"
-  );
-
   const mount = useMount();
 
   if (!mount) return null;
+
+  if (!medias || medias.length === 0) {
+    return null;
+  }
 
   return (
     <>

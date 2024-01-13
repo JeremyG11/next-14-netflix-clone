@@ -1,10 +1,16 @@
 import { AxiosResponse } from "axios";
 import { apiInstance } from "./axios";
-import { DiscoveryMovieApiResponse, TrendingMedias } from "../../../types";
+import {
+  DiscoveryMovieApiResponse,
+  APIResponse,
+  TrendingMedias,
+} from "../../../types";
 
 interface DiscoveryMoviesProps {
   page: number;
   results: DiscoveryMovieApiResponse[];
+  total_pages: number;
+  total_results: number;
 }
 
 interface TrendingMediasProps {
@@ -17,7 +23,7 @@ export const moviesDiscovery = async (
   sort_by?: string,
   year?: number,
   with_genres?: string
-): Promise<DiscoveryMoviesProps> => {
+): Promise<APIResponse> => {
   try {
     let url = `/discover/movie?`;
     if (page) {
@@ -35,15 +41,16 @@ export const moviesDiscovery = async (
       url += `with_genres=${with_genres}`;
     }
 
-    const res: AxiosResponse<{
-      page: number;
-      results: DiscoveryMovieApiResponse[];
-    }> = await apiInstance.get(url);
+    const res: AxiosResponse<APIResponse> = await apiInstance.get(url);
 
     const result = res.data;
-    console.log(url);
 
-    return { page: result.page, results: result.results };
+    return {
+      page: result.page,
+      results: result.results,
+      total_pages: result.total_pages,
+      total_results: result.total_results,
+    };
   } catch (error: any) {
     console.log(error.message);
     return error.message;
@@ -56,7 +63,7 @@ export const filterMovies = async (
   sort_by?: string,
   year?: number,
   with_genres?: string
-) => {
+): Promise<APIResponse> => {
   try {
     if (!query) return moviesDiscovery(page, sort_by, year, with_genres);
 
@@ -79,13 +86,15 @@ export const filterMovies = async (
       url += `&page=1`;
     }
 
-    const res: AxiosResponse<{
-      page: number;
-      results: DiscoveryMovieApiResponse[];
-    }> = await apiInstance.get(url);
+    const res: AxiosResponse<APIResponse> = await apiInstance.get(url);
 
     const result = res.data;
-    return { page: result.page, results: result.results };
+    return {
+      page: result.page,
+      results: result.results,
+      total_pages: result.total_pages,
+      total_results: result.total_results,
+    };
   } catch (error: any) {
     return error.message;
   }
