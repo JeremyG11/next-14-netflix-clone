@@ -10,8 +10,8 @@ async function Home() {
   const { genres } = await getMovieGenres();
 
   const genresWithMovies = genres?.map((genre: Genre) => {
-    const hasMovies = movies?.results.some((movie) =>
-      movie.genre_ids.includes(genre.id)
+    const hasMovies = movies?.results?.some((movie) =>
+      movie.genre_ids?.includes(genre.id)
     );
     return {
       genre_name: genre.name,

@@ -2,28 +2,62 @@
 import React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function Pagination() {
+interface PaginationProps {
+  pages: number;
+}
+
+export default function Pagination({ pages }: PaginationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
+  const totalPages = Math.ceil(pages / 10); // Assuming 10 items per page
 
   const handlePageChange = (event: React.MouseEvent, page: number) => {
     event.preventDefault();
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", page.toString());
-
     router.push(`${pathname}?${params.toString()}`);
   };
 
+  // const getPaginationGroup = () => {
+  //   let start = Math.floor((currentPage - 1) / 5) * 5;
+  //   return new Array(5).fill().map((_, idx) => start + idx + 1);
+  // };
+
   return (
-    <div>
-      <ol className="flex justify-center gap-1 text-xs font-medium">
-        <li>
-          <a
-            href="#"
-            className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+    <div className=" mt-5">
+      <ol className="flex justify-center gap-1 space-x-2 text-xs font-medium">
+        {/* {currentPage !== 1 && (
+          <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+            <a href="#" onClick={() => handleClick(currentPage - 1)}>
+              Prev
+            </a>
+          </li>
+        )} */}
+        {/* {getPaginationGroup().map((item, index) => (
+          <li
+            key={index}
+            className="w-10 h-10 border rounded-full flex items-center justify-center"
           >
-            <span className="sr-only">Prev Page</span>
+            {item < totalPages ? (
+              <a href="#" onClick={() => handleClick(item)}>
+                {item}
+              </a>
+            ) : (
+              "..."
+            )}
+          </li>
+        ))}
+        {currentPage !== totalPages && (
+          <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+            <a href="#" onClick={() => handleClick(currentPage + 1)}>
+              Next
+            </a>
+          </li>
+        )} */}
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-3 w-3"
@@ -39,48 +73,24 @@ export default function Pagination() {
           </a>
         </li>
 
-        <li>
-          <button
-            onClick={(event) => handlePageChange(event, 1)}
-            className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-          >
-            1
-          </button>
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <button onClick={(event) => handlePageChange(event, 1)}>1</button>
         </li>
 
-        <li>
-          <button
-            onClick={(e) => handlePageChange(e, 2)}
-            className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-          >
-            2
-          </button>
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <button onClick={(e) => handlePageChange(e, 2)}>2</button>
         </li>
 
-        <li>
-          <button
-            onClick={(e) => handlePageChange(e, 3)}
-            className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-          >
-            3
-          </button>
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <button onClick={(e) => handlePageChange(e, 3)}>3</button>
         </li>
 
-        <li>
-          <button
-            onClick={(e) => handlePageChange(e, 4)}
-            className="block h-8 w-8 rounded border-blue-600 bg-blue-600 text-center leading-8 text-white"
-          >
-            4
-          </button>
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <button onClick={(e) => handlePageChange(e, 4)}>4</button>
         </li>
 
-        <li>
-          <a
-            href="#"
-            className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
-          >
-            <span className="sr-only">Next Page</span>
+        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
+          <a href="#">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-3 w-3"
