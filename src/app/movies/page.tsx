@@ -4,8 +4,8 @@ import { MdMovieFilter } from "react-icons/md";
 import { Movie } from "../../../types";
 import Navbar from "@/components/Navbar";
 import { Search } from "@/components/Filter";
-import MovieCard from "@/components/MovieCard";
 import Pagination from "@/components/Pagination";
+import { MovieCard } from "@/components/Cards";
 import { filterMovies } from "@/libs/api/getMovies";
 import SortByButtons from "@/components/SortByButton";
 
@@ -79,7 +79,7 @@ export default async function SearchPage({
               )}
             </Suspense>
           </section>
-          <Pagination />
+          <Pagination pages={500} />
         </div>
       </div>
     </section>

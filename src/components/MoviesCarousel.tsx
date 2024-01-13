@@ -9,40 +9,27 @@ import {
   MdOutlineArrowForwardIos,
 } from "react-icons/md";
 
-import MovieCard from "./MovieCard";
-import { GenreWithMovies, Movie } from "../../types";
+import { TrandingMediasCard } from "./Cards";
+import { GenreWithMovies, TrendingMedias } from "../../types";
 import { BarIcon } from "./BarIcon";
+import useMount from "../../hooks/mount-hook";
 
 interface MoviesCarouselProp {
-  movies: Movie[];
+  medias: TrendingMedias[];
   generesWithMovies: GenreWithMovies[];
 }
 
 export const MoviesCarousel = ({
-  movies,
+  medias,
   generesWithMovies,
 }: MoviesCarouselProp) => {
-  const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
-    const {
-      carouselState: { currentSlide },
-    } = rest;
-    return (
-      <div
-        className=" relative carousel-button-group flex justify-end 
-          items-center w-full"
-      >
-        <button
-          className="absolute left-0 block p-3"
-          onClick={() => previous()}
-        >
-          <MdOutlineArrowBackIos className="text-4xl text-white" />
-        </button>
-        <button className="absolute right-0 block p-3" onClick={() => next()}>
-          <MdOutlineArrowForwardIos className="text-4xl text-white" />
-        </button>
-      </div>
-    );
-  };
+  const filterOnlyMovies = medias?.filter(
+    (movie) => movie?.media_type === "movie"
+  );
+
+  const mount = useMount();
+
+  if (!mount) return null;
 
   return (
     <>
@@ -74,10 +61,10 @@ export const MoviesCarousel = ({
             <button
               key={index}
               className={`mr-6 py-[8px] px-6 text-sm font-medium focus:outline-none rounded-full text-gray-100 ${
-                !genre.hasMovies ? "bg-gray-800" : "bg-primary"
+                !genre?.hasMovies ? "bg-gray-800" : "bg-primary"
               } `}
             >
-              {genre.genre_name}
+              {genre?.genre_name}
             </button>
           ))}
         </div>
@@ -136,11 +123,30 @@ export const MoviesCarousel = ({
           slidesToSlide={1}
           swipeable
         >
-          {movies?.map((movie, index) => (
-            <MovieCard key={index} movie={movie} index={index} />
+          {medias?.map((media) => (
+            <TrandingMediasCard key={media.id} media={media} index={media.id} />
           ))}
         </Carousel>
       </div>
     </>
+  );
+};
+
+const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
+  const {
+    carouselState: { currentSlide },
+  } = rest;
+  return (
+    <div
+      className=" relative carousel-button-group flex justify-end 
+          items-center w-full"
+    >
+      <button className="absolute left-0 block p-3" onClick={() => previous()}>
+        <MdOutlineArrowBackIos className="text-4xl text-white" />
+      </button>
+      <button className="absolute right-0 block p-3" onClick={() => next()}>
+        <MdOutlineArrowForwardIos className="text-4xl text-white" />
+      </button>
+    </div>
   );
 };

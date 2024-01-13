@@ -1,10 +1,15 @@
 import { AxiosResponse } from "axios";
 import { apiInstance } from "./axios";
-import { DiscoveryMovieApiResponse } from "../../../types";
+import { DiscoveryMovieApiResponse, TrendingMedias } from "../../../types";
 
 interface DiscoveryMoviesProps {
   page: number;
   results: DiscoveryMovieApiResponse[];
+}
+
+interface TrendingMediasProps {
+  page: number;
+  results: TrendingMedias[];
 }
 
 export const moviesDiscovery = async (
@@ -82,6 +87,22 @@ export const filterMovies = async (
     const result = res.data;
     return { page: result.page, results: result.results };
   } catch (error: any) {
+    return error.message;
+  }
+};
+
+export const getTrendingMedias = async (): Promise<TrendingMediasProps> => {
+  try {
+    const res: AxiosResponse<{
+      page: number;
+      results: TrendingMedias[];
+    }> = await apiInstance.get("/trending/all/day");
+
+    const result = res.data;
+
+    return { page: result.page, results: result.results };
+  } catch (error: any) {
+    console.log(error.message);
     return error.message;
   }
 };

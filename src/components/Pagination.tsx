@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { HiChevronRight, HiOutlineChevronLeft } from "react-icons/hi2";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
@@ -11,99 +12,95 @@ export default function Pagination({ pages }: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
-  const totalPages = Math.ceil(pages / 10); // Assuming 10 items per page
+  const totalPages = pages;
 
-  const handlePageChange = (event: React.MouseEvent, page: number) => {
+  const handlePageChange = (event: React.MouseEvent, page: number | string) => {
     event.preventDefault();
+    let newPageNumber: number;
+    if (page === "Prev") {
+      newPageNumber = Math.max(1, currentPage - 1);
+    } else if (page === "Next") {
+      newPageNumber = Math.min(totalPages, currentPage + 1);
+    } else {
+      newPageNumber = Number(page);
+    }
     const params = new URLSearchParams(searchParams.toString());
-    params.set("page", page.toString());
+    params.set("page", newPageNumber.toString());
     router.push(`${pathname}?${params.toString()}`);
   };
 
-  // const getPaginationGroup = () => {
-  //   let start = Math.floor((currentPage - 1) / 5) * 5;
-  //   return new Array(5).fill().map((_, idx) => start + idx + 1);
-  // };
+  const getPaginationGroup = () => {
+    let start = Math.max(1, currentPage - 4);
+    if (currentPage > totalPages - 5) {
+      start = totalPages - 5;
+    }
+    return Array.from({ length: 6 }, (_, idx) => start + idx);
+  };
 
   return (
-    <div className=" mt-5">
+    <div className=" mt-8">
       <ol className="flex justify-center gap-1 space-x-2 text-xs font-medium">
-        {/* {currentPage !== 1 && (
-          <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-            <a href="#" onClick={() => handleClick(currentPage - 1)}>
-              Prev
-            </a>
+        <>
+          <li>
+            <button
+              onClick={(event) => handlePageChange(event, "Next")}
+              className="w-8 h-8 border rounded-full flex items-center justify-center hover:bg-primary hover:border-none"
+              disabled={currentPage === 1}
+            >
+              <HiOutlineChevronLeft />
+            </button>
           </li>
-        )} */}
-        {/* {getPaginationGroup().map((item, index) => (
-          <li
-            key={index}
-            className="w-10 h-10 border rounded-full flex items-center justify-center"
+          {getPaginationGroup().map((item, index) => (
+            <li key={index}>
+              {item <= totalPages ? (
+                <button
+                  onClick={(event) => handlePageChange(event, item)}
+                  className={`w-8 h-8 border rounded-full flex items-center justify-center hover:bg-primary hover:border-none ${
+                    item === currentPage
+                      ? "bg-primary border-none text-white"
+                      : ""
+                  }}`}
+                >
+                  {item}
+                </button>
+              ) : null}
+            </li>
+          ))}
+          {currentPage < totalPages - 5 && (
+            <>
+              <li className="flex items-center justify-center space-x-1">
+                <span className="p-px bg-white rounded-full"></span>
+                <span className="p-px bg-white rounded-full"></span>
+                <span className="p-px bg-white rounded-full"></span>
+              </li>
+
+              <li>
+                <button
+                  onClick={(event) => handlePageChange(event, totalPages - 1)}
+                  className="w-8 h-8 border rounded-full flex items-center justify-center hover:bg-primary hover:border-none"
+                >
+                  {totalPages - 1}
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={(event) => handlePageChange(event, totalPages)}
+                  className="w-8 h-8 border rounded-full flex items-center justify-center hover:bg-primary hover:border-none"
+                >
+                  {totalPages}
+                </button>
+              </li>
+            </>
+          )}
+        </>
+        <li>
+          <button
+            onClick={(event) => handlePageChange(event, "Next")}
+            className="w-8 h-8 border rounded-full flex items-center justify-center hover:bg-primary hover:border-none"
+            disabled={currentPage === totalPages}
           >
-            {item < totalPages ? (
-              <a href="#" onClick={() => handleClick(item)}>
-                {item}
-              </a>
-            ) : (
-              "..."
-            )}
-          </li>
-        ))}
-        {currentPage !== totalPages && (
-          <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-            <a href="#" onClick={() => handleClick(currentPage + 1)}>
-              Next
-            </a>
-          </li>
-        )} */}
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <a href="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-3 w-3"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
-        </li>
-
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <button onClick={(event) => handlePageChange(event, 1)}>1</button>
-        </li>
-
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <button onClick={(e) => handlePageChange(e, 2)}>2</button>
-        </li>
-
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <button onClick={(e) => handlePageChange(e, 3)}>3</button>
-        </li>
-
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <button onClick={(e) => handlePageChange(e, 4)}>4</button>
-        </li>
-
-        <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-          <a href="#">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-3 w-3"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
+            <HiChevronRight />
+          </button>
         </li>
       </ol>
     </div>

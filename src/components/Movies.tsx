@@ -8,7 +8,7 @@ import { BsFillCollectionPlayFill } from "react-icons/bs";
 
 import MovieCTA from "./MovieCTA";
 import { GenreWithMovies, Movie } from "../../types";
-import MovieCard from "./MovieCard";
+import { MovieCard } from "./Cards";
 import { BarIcon } from "./BarIcon";
 import SortByButtons from "./SortByButton";
 

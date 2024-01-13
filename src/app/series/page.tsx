@@ -1,21 +1,36 @@
 import { BsFillCollectionPlayFill } from "react-icons/bs";
 
-import { Movie } from "../../../types";
+import { TVseries } from "../../../types";
 import Navbar from "@/components/Navbar";
 import { Search } from "@/components/Filter";
-import MovieCard from "@/components/MovieCard";
 import Pagination from "@/components/Pagination";
 import SortByButtons from "@/components/SortByButton";
 import { filterSeries } from "@/libs/api/getSeries";
 import MovieCTA from "@/components/MovieCTA";
+import { SeriesCard } from "@/components/Cards";
 
 export default async function Series({
   searchParams,
 }: {
-  searchParams: { q: string | undefined };
+  searchParams?: {
+    q?: string;
+    sort_by?: string;
+    page?: string;
+    first_air_date_year?: string;
+    with_genres?: string;
+  };
 }) {
-  const searchResult = await filterSeries(searchParams.q!);
+  const page = Number(searchParams?.page) || 1;
+  const year = Number(searchParams?.first_air_date_year);
 
+  const searchResult = await filterSeries(
+    searchParams?.q || "",
+    page,
+    searchParams?.sort_by,
+    year!,
+    searchParams?.with_genres
+  );
+  console.log(searchResult);
   return (
     <section
       className="relative bg-cover bg-no-repeat  bg-top bg-fixed h-full min-h-full"
@@ -51,19 +66,19 @@ export default async function Series({
           <section className="mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
             {searchResult?.results
               ?.slice(0, 8)
-              .map((movie: Movie, index: number) => (
-                <MovieCard key={movie.id} movie={movie} index={index} />
+              .map((movie: TVseries, index: number) => (
+                <SeriesCard key={movie.id} series={movie} index={index} />
               ))}
           </section>
           <MovieCTA />
           <section className="mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
             {searchResult?.results
               ?.slice(10, 14)
-              .map((movie: Movie, index: number) => (
-                <MovieCard key={movie.id} movie={movie} index={index} />
+              .map((movie: TVseries, index: number) => (
+                <SeriesCard key={movie.id} series={movie} index={index} />
               ))}
           </section>
-          <Pagination />
+          <Pagination pages={100} />
         </div>
       </div>
     </section>
