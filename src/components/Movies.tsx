@@ -6,8 +6,8 @@ import { FiSearch } from "react-icons/fi";
 import { MdMovieFilter } from "react-icons/md";
 import { BsFillCollectionPlayFill } from "react-icons/bs";
 
-import MovieCTA from "./MovieCTA";
-import { GenreWithMovies, Movie } from "../../types";
+import { MovieCTA } from "./MovieCTA";
+import { GenreWithMovies, Movie, MoviesDetails } from "../../types";
 import { MovieCard } from "./Cards";
 import { BarIcon } from "./BarIcon";
 import SortByButtons from "./SortByButton";
@@ -15,8 +15,15 @@ import SortByButtons from "./SortByButton";
 interface MoviesProps {
   movies: Movie[];
   generesWithMovies: GenreWithMovies[];
+  movieDetials: MoviesDetails;
+  randomIndex: number;
 }
-export default function Movies({ movies, generesWithMovies }: MoviesProps) {
+export default function Movies({
+  movies,
+  generesWithMovies,
+  movieDetials,
+  randomIndex,
+}: MoviesProps) {
   const tabs = [{ name: "Movies" }, { name: "Series" }, { name: "Actions" }];
 
   const [activeTab, setActiveTab] = useState("Movies");
@@ -100,7 +107,7 @@ export default function Movies({ movies, generesWithMovies }: MoviesProps) {
           <MovieCard key={movie.id} movie={movie} index={index} />
         ))}
       </section>
-      <MovieCTA />
+      <MovieCTA movie={movies[randomIndex]} movieDetials={movieDetials} />
       <section className="mt-4 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
         {movies?.slice(15, 20).map((movie: Movie, index: number) => (
           <MovieCard key={movie.id} movie={movie} index={index} />

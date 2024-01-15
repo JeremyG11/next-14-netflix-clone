@@ -4,6 +4,7 @@ import {
   DiscoveryMovieApiResponse,
   APIResponse,
   TrendingMedias,
+  MoviesDetails,
 } from "../../../types";
 
 interface DiscoveryMoviesProps {
@@ -112,6 +113,18 @@ export const getTrendingMedias = async (): Promise<TrendingMediasProps> => {
     return { page: result.page, results: result.results };
   } catch (error: any) {
     console.log(error.message);
+    return error.message;
+  }
+};
+
+export const movieDetails = async (id: number) => {
+  try {
+    const res: AxiosResponse<MoviesDetails> = await apiInstance.get(
+      `/movie/${id}/images`
+    );
+    const result = res.data;
+    return result;
+  } catch (error: any) {
     return error.message;
   }
 };

@@ -5,8 +5,8 @@ import Navbar from "@/components/Navbar";
 import { Search } from "@/components/Filter";
 import Pagination from "@/components/Pagination";
 import SortByButtons from "@/components/SortByButton";
-import { filterSeries } from "@/libs/api/getSeries";
-import MovieCTA from "@/components/MovieCTA";
+import { filterSeries, seriesDetails } from "@/libs/api/getSeries";
+import { MovieCTA, SeriesCTA } from "@/components/MovieCTA";
 import { SeriesCard } from "@/components/Cards";
 
 export default async function Series({
@@ -30,7 +30,11 @@ export default async function Series({
     year!,
     searchParams?.with_genres
   );
-  console.log(searchResult);
+  const randomIndex = Math.floor(Math.random() * 8) + 1;
+
+  const seletedSeries = await seriesDetails(
+    searchResult.results[randomIndex].id
+  );
   return (
     <section
       className="relative bg-cover bg-no-repeat  bg-top bg-fixed h-full min-h-full"
@@ -70,7 +74,10 @@ export default async function Series({
                 <SeriesCard key={movie.id} series={movie} index={index} />
               ))}
           </section>
-          <MovieCTA />
+          <SeriesCTA
+            series={searchResult.results[randomIndex]}
+            seriesDetials={seletedSeries}
+          />
           <section className="mt-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
             {searchResult?.results
               ?.slice(10, 14)

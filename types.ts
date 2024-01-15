@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -87,4 +89,68 @@ export interface TrendingMedias {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  first_air_date?: string;
+}
+
+export interface TVseriesDetails {
+  backdrops: [
+    {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: null;
+      file_path: "/5AkPhazx8F0Ht74CUdJU03vNzBi.jpg";
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }
+  ];
+  id: number;
+  logos: [];
+  posters: [
+    {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: string;
+      file_path: string;
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }
+  ];
+}
+export interface MoviesDetails {
+  backdrops: [
+    {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: null;
+      file_path: "/aCAvih7z9D8FZHrF8sSSaczl9N8.jpg";
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }
+  ];
+  id: 532;
+  logos: [
+    {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: "en";
+      file_path: "/awLdurWqZs1vPZM4zSNGssvf8Ox.png";
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }
+  ];
+  posters: [
+    {
+      aspect_ratio: number;
+      height: number;
+      iso_639_1: "en";
+      file_path: "/qdIR27trLyrlJ5nmkbcG3Bomah6.jpg";
+      vote_average: number;
+      vote_count: number;
+      width: number;
+    }
+  ];
 }

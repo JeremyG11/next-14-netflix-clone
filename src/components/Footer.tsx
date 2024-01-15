@@ -41,16 +41,21 @@ function Footer() {
           </ul>
 
           <ul className="flex justify-center gap-6 sm:mt-0 lg:justify-end">
-            <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-              <FaFacebookF />
+            <li className="w-10 h-10 cursor-pointer border hover:bg-primary hover:border-none rounded-full flex items-center justify-center">
+              <Link href="#">
+                <FaFacebookF />
+              </Link>
+            </li>
+            <li className="w-10 h-10 cursor-pointer border hover:bg-primary hover:border-none rounded-full flex items-center justify-center">
+              <Link href="#">
+                <FaXTwitter />
+              </Link>
             </li>
 
-            <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-              <FaXTwitter />
-            </li>
-
-            <li className="w-10 h-10 border rounded-full flex items-center justify-center">
-              <FaInstagram />
+            <li className="w-10 cursor-pointer h-10 border hover:bg-primary hover:border-none rounded-full flex items-center justify-center">
+              <Link href="#">
+                <FaInstagram />
+              </Link>
             </li>
           </ul>
         </div>

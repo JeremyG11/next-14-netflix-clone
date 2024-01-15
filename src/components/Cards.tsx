@@ -86,11 +86,14 @@ export function TrandingMediasCard({ media }: TrandingMediasCardProps) {
         <Image src={poster} alt={media?.title} fill className="w-full h-full" />
       </div>
       <div className="py-3 space-y-1">
-        <p className="text-lg font-semibold truncate">{media?.title}</p>
+        <p className="text-lg font-semibold truncate">
+          {media?.title || media.original_title}
+        </p>
 
         <div className="flex items-center  text-gray-500 justify-between">
           <p className="text-sm font-medium">
-            {media?.release_date?.split("-")[0]}
+            {media?.release_date?.split("-")[0] ||
+              media?.first_air_date?.split("-")[0]}
           </p>
           <div className="flex items-center justify-between w-1/2">
             <AiFillHeart />

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { apiInstance } from "./axios";
-import { Genre, TVseries } from "../../../types";
+import { Genre, TVseries, TVseriesDetails } from "../../../types";
 
 interface DiscoveryMoviesProps {
   page: number;
@@ -112,7 +112,18 @@ export const getMovieGenres = async () => {
     const result = res.data;
     return { genres: result.genres };
   } catch (error: any) {
-    // "Error fetching movies:", error);
+    return error.message;
+  }
+};
+
+export const seriesDetails = async (id: string) => {
+  try {
+    const res: AxiosResponse<TVseriesDetails> = await apiInstance.get(
+      `/tv/${id}/images`
+    );
+    const result = res.data;
+    return result;
+  } catch (error: any) {
     return error.message;
   }
 };

@@ -1,7 +1,11 @@
 import { Genre } from "../../types";
 import Hero from "@/components/Hero";
 import Movies from "@/components/Movies";
-import { getTrendingMedias, moviesDiscovery } from "@/libs/api/getMovies";
+import {
+  getTrendingMedias,
+  movieDetails,
+  moviesDiscovery,
+} from "@/libs/api/getMovies";
 import { MoviesCarousel } from "@/components/MoviesCarousel";
 import { getMovieGenres } from "@/libs/api/getSeries";
 
@@ -20,6 +24,10 @@ async function Home() {
       hasMovies,
     };
   });
+
+  const randomIndex = Math.floor(Math.random() * 10) + 1;
+  const seletedSeries = await movieDetails(movies?.results[randomIndex].id);
+
   return (
     <main className="w-full flex flex-col pb-16  gap-y-10">
       <Hero />
@@ -27,7 +35,12 @@ async function Home() {
         medias={medias?.results}
         generesWithMovies={genresWithMovies}
       />
-      <Movies movies={movies?.results} generesWithMovies={genresWithMovies} />
+      <Movies
+        movies={movies?.results}
+        generesWithMovies={genresWithMovies}
+        movieDetials={seletedSeries}
+        randomIndex={randomIndex}
+      />
     </main>
   );
 }
