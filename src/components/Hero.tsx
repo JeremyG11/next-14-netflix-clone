@@ -85,10 +85,8 @@ export default function Hero() {
           <button
             key={index}
             type="button"
-            className={`bg-primary h-1 w-10 rounded ${
-              index === activeSlide
-                ? 'aria-current="true"'
-                : 'aria-current="false"'
+            className={` h-1 w-10 rounded ${
+              index === activeSlide ? "bg-primary" : "bg-red-900"
             }`}
             aria-label={`Slide ${index + 1}`}
             onClick={() => setActiveSlide(index)}

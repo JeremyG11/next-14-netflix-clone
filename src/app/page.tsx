@@ -26,7 +26,8 @@ async function Home() {
   });
 
   const randomIndex = Math.floor(Math.random() * 10) + 1;
-  const seletedSeries = await movieDetails(movies?.results[randomIndex].id);
+  const seletedSeries =
+    (await movieDetails(movies?.results[randomIndex]?.id)) || 0;
 
   return (
     <main className="w-full flex flex-col pb-16  gap-y-10">
