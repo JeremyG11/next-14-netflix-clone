@@ -52,7 +52,7 @@ export default async function SearchPage({
             </p>
           </div>
           <div className="w-full md:w-1/2 flex gap-4 justify-center items-end flex-col">
-            <div className="flex w-full lg:pl-[148px]">
+            <div className="flex w-full xl:pl-[148px]">
               <SortByButtons />
             </div>
           </div>

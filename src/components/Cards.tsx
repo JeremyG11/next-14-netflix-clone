@@ -47,7 +47,7 @@ export function SeriesCard({ series }: SeriesCardProps) {
   const poster = `https://image.tmdb.org/t/p/w500/${series?.poster_path}`;
   return (
     <div className="rounded-lg w-full text-white flex flex-col justify-between">
-      <div className="relative w-full h-80 rounded-lg overflow-hidden">
+      <div className="relative w-full h-96 rounded-lg overflow-hidden">
         <Image src={poster} alt={series?.name} fill className="w-full h-full" />
       </div>
       <div className="py-3 space-y-1">
