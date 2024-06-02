@@ -35,12 +35,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-# next-14-disney-clone
+# next-14-netflix-clone
 
 <div align="center">
   <br />
     <a href="https://youtu.be/zgGhzuBZOQg" target="_blank">
-      <img src="https://github.com/adrianhajdin/event_platform/assets/151519281/548975af-f0ed-4103-8834-fe93cf91862e" alt="Project Banner">
+      <img src="https://asset.cloudinary.com/dxlxpsrwu/8898e8cdf405afb8a08c0887eeb23115" alt="Project Banner">
     </a>
   <br />
 
