@@ -27,33 +27,36 @@
 6. 🔗 [Links](#links)
 7. 🚀 [More](#more)
 
-## 🚨 Tutorial
+ 
+## <a name="introduction">🤖 Introduction - Project Description - Netflix Clone</a>
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
+Built with Next.js 14, This project serves as a testament to my proficiency in modern web development technologies and my capability to create visually appealing and functional applications. The integration with TMDB adds a real-world element, showcasing my skills in working with external APIs. Utilizing Next.js, TypeScript, Tailwind CSS, and API integration, this project highlights a well-rounded skill set that aligns with the latest industry standards
 
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
-
-<a href="https://youtu.be/zgGhzuBZOQg" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
-
-## <a name="introduction">🤖 Introduction</a>
-
-Built on Next.js 14, the events application stands as a comprehensive, full-stack platform for managing events. It serves as a hub, spotlighting diverse events taking place globally. Featuring seamless payment processing through Stripe, you have the capability to purchase tickets for any event or even initiate and manage your own events.
-
-If you're getting started and need assistance or face any bugs, join our active Discord community with over 27k+ members. It's a place where people help each other out.
-
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
-- Node.js
+- React.js
 - Next.js
 - TypeScript
 - TailwindCSS
-- Stripe
 - Zod
 - React Hook Form
 - Shadcn
 - uploadthing
+
+<div align="center">
+  <br />
+      <img src="https://github.com/JeremyG11/gatwech-nguth-assets/blob/main/image_original.jpg?raw=true" alt="Project movies list">
+  <br />
+
+  <div>
+   </div>
+
+  <h3 align="center">A Full Stack Next 14 Netflix clone</h3>
+
+   <div align="center">
+     </div>
+</div>
 
 ## <a name="features">🔋 Features</a>
 
@@ -74,11 +77,7 @@ If you're getting started and need assistance or face any bugs, join our active 
 
 👉 **New Category:** Dynamic categorization allows for the seamless addition of new event categories, keeping your platform adaptable.
 
-👉 **Checkout and Pay with Stripe:** Smooth and secure payment transactions using Stripe, enhancing user experience during the checkout process.
-
-👉 **Event Orders:** Comprehensive order management system, providing a clear overview of all event-related transactions.
-
-👉 **Search Orders:** Quick and efficient search functionality for orders, facilitating easy tracking and management.
+👉 **Search Movies:** Quick and efficient search functionality for orders, facilitating easy tracking and management.
 
 and many more, including code architecture and reusability
 
