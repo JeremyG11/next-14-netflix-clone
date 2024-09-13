@@ -38,7 +38,7 @@ export default function SortByButtons() {
   }, [sortOption, createQueryString, pathname, router]);
 
   return (
-    <div className="space-y-4  overflow-x-auto lg:flex items-center md:justify w-full">
+    <div className="space-y-4 overflow-x-auto lg:flex items-center lg:justify w-full">
       <p className="text-xl pr-6 pt-3 font-bold text-gray-100 md:text-sm md:font-semibold ">
         Sort by:
       </p>
